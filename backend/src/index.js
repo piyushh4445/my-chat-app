@@ -10,7 +10,12 @@ import path from "path";
 
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
-import {app,server} from "./lib/socket.js";
+import http from "http";
+import { initSocket } from "./lib/socket.js";
+
+const app = express();
+const server = http.createServer(app);
+initSocket(server);
 
 
 
