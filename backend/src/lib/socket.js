@@ -1,9 +1,9 @@
 import { Server } from "socket.io";
 
-let io = null;
-const userSocketMap = {};
+let io; // will be assigned later
+const userSocketMap = {}; // { userId: socketId }
 
-function initSocket(server) {
+export function initSocket(server) {
   io = new Server(server, {
     cors: {
       origin: ["http://localhost:5173"],
@@ -15,7 +15,9 @@ function initSocket(server) {
     console.log("A user connected", socket.id);
 
     const userId = socket.handshake.query.userId;
-    if (userId) userSocketMap[userId] = socket.id;
+    if (userId) {
+      userSocketMap[userId] = socket.id;
+    }
 
     io.emit("getOnlineUsers", Object.keys(userSocketMap));
 
@@ -31,4 +33,4 @@ export function getReceiverSocketId(userId) {
   return userSocketMap[userId];
 }
 
-export { initSocket };
+export { io }; // IMPORTANT ✔ export io
