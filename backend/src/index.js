@@ -10,7 +10,7 @@ import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
 import { initSocket } from "./lib/socket.js";
 
-dotenv.config();
+dotenv.config(); // loads dot env variables
 
 const app = express();
 const server = http.createServer(app);
