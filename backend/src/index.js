@@ -27,12 +27,16 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: [
-      "http://localhost:5173",   // local developement
-      "https://my-chat-app-9zld.vercel.app" // render production url
+      "http://localhost:5173",
+      "https://my-chat-app-9zld.vercel.app"
     ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
+
+// handle preflight requests
+app.options("*", cors());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
