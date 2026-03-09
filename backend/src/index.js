@@ -28,7 +28,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",   // local developement
-      process.env.FRONTEND_URL,  // render production url
+      "https://my-chat-app-9zld.vercel.app" // render production url
     ],
     credentials: true,
   })
